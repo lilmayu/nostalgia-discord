@@ -1,0 +1,6 @@
+debug: true
+
+discord:
+  bot-token: "bot-token"
+  text-channel-id: 123
+  console-channel-id: 123
