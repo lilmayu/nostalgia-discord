@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+}
+
+group 'dev.mayuna'
+version '1.0'
+
+repositories {
+    flatDir { dirs 'libs'}
+    mavenCentral()
+
+    maven { url "https://m2.chew.pro/releases" }
+    maven { url "https://m2.chew.pro/snapshots" }
+}
+
+dependencies {
+
+    // CraftBukkit 1.6.4
+    compileOnly name: 'craftbukkit'
+
+    // JDA
+    implementation('net.dv8tion:JDA:5.0.0-alpha.12') {
+        exclude module: 'opus-java'
+    }
+
+    // JDA Chewutils
+    implementation "pw.chew:jda-chewtils:2.0-SNAPSHOT"
+
+    // Personal libraries
+    implementation 'dev.mayuna:mayus-jda-utilities:2.5.4'
+    implementation 'dev.mayuna:mayus-library:2.0.1'
+
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.2'
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.2'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+shadowJar {
+
+}

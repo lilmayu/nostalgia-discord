@@ -1,0 +1,4 @@
+name: NostalgiaDiscord
+version: 1.0
+main: dev.mayuna.nostalgiadiscord.Main
+authors: [ Mayuna ]
