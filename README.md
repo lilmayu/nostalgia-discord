@@ -24,9 +24,9 @@ There is a config file, which is pretty simple.
 There are no Minecraft commands at this time.
 
 ### Discord
-`/ping` -> Pong!
-`/channel [channel]` -> Sets specified Text Channel (or current channel, if not specified) as channel which will be used for chat, player joins/quits/deaths, etc. forwarding and reading (requires ADMINISTRATOR permission)
-`/channel-console [channel]` -> Sets specified Text Channel (or current channel, if not specified) as channel which will be used for console output (requires ADMINISTRATOR permission)
-`/console-log` -> Sends last 10 logs
-`/minecraft-command <command>` -> Executes specified command on server as console. Slash (/) is not needed same like typing commands into console. For example: `/minecraft-command say Hello, World!` executes `say Hello, World!` on server as console
+- `/ping` -> Pong!
+- `/channel [channel]` -> Sets specified Text Channel (or current channel, if not specified) as channel which will be used for chat, player joins/quits/deaths, etc. forwarding and reading (requires ADMINISTRATOR permission)
+- `/channel-console [channel]` -> Sets specified Text Channel (or current channel, if not specified) as channel which will be used for console output (requires ADMINISTRATOR permission)
+- `/console-log` -> Sends last 10 logs
+- `/minecraft-command <command>` -> Executes specified command on server as console. Slash (/) is not needed same like typing commands into console. For example: `/minecraft-command say Hello, World!` executes `say Hello, World!` on server as console
 
