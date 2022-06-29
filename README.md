@@ -1,5 +1,5 @@
 # Nostalgia Discord
-I don't really know what to write here, but I've made this CraftBukkit plugin for #saveminecraft Discord ([invite link](https://discord.gg/saveminecraft)).
+I don't really know what to write here, but I've made this CraftBukkit plugin for #saveminecraft Discord ([invite link](https://discord.gg/saveminecraft)) Nostalgia Survival 1.6.4 Minecraft server.
 
 The code is... ugly. I was kinda in hurry, and I was not thinking about making it pretty or well-structured - but it works well, I hope.
 
