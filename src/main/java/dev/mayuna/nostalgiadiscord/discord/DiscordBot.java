@@ -7,6 +7,7 @@ import dev.mayuna.nostalgiadiscord.discord.listeners.CommandListener;
 import dev.mayuna.nostalgiadiscord.discord.listeners.MessageListener;
 import dev.mayuna.nostalgiadiscord.utils.Config;
 import dev.mayuna.nostalgiadiscord.utils.Logger;
+import dev.mayuna.nostalgiadiscord.utils.Utils;
 import lombok.Getter;
 import lombok.Setter;
 import net.dv8tion.jda.api.JDA;
@@ -23,6 +24,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class DiscordBot {
 
@@ -31,6 +34,9 @@ public class DiscordBot {
 
     private static @Getter @Setter TextChannel textChannel;
     private static @Getter @Setter TextChannel consoleTextChannel;
+
+    private static @Getter Timer activityTimer;
+    private static @Getter long startTime = System.currentTimeMillis();
 
     public static void start() {
         MessageInfo.useSystemEmotes = true;
@@ -72,10 +78,23 @@ public class DiscordBot {
             Logger.error("Could not cache Text Channel (console): Invalid Text Channel ID! (" + Config.Discord.getConsoleTextChannelId() + ")");
             Logger.error("To resolve this issue, use /channel-console command on Discord.");
         }
+
+        startActivityTimer();
     }
 
     public static void stop() {
         jda.shutdown();
+    }
+
+    private static void startActivityTimer() {
+        activityTimer = new Timer();
+
+        activityTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                jda.getPresence().setActivity(Activity.playing("with " + Bukkit.getOnlinePlayers().length + " Players | " + Utils.formatTime(System.currentTimeMillis() - startTime) + " uptime"));
+            }
+        }, 0, 60_000);
     }
 
     //////////////////////////
