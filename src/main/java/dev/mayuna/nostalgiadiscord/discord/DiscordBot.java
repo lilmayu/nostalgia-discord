@@ -17,6 +17,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -106,8 +107,9 @@ public class DiscordBot {
             return;
         }
 
-        String playerName = event.getPlayer().getName();
-        String message = event.getMessage();
+        String playerName = event.getPlayer().getName().replaceAll("@", "");
+        String message = event.getMessage().replaceAll("@", "");
+
 
         textChannel.sendMessage("<**" + playerName + "**> " + message).queue(success -> {
             // Empty
@@ -195,7 +197,7 @@ public class DiscordBot {
         Logger.info("[DISCORD] " + role + user.getName() + "#" + user.getDiscriminator() + " > " + message);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.sendMessage("§9[DISCORD] §a" + role + "§e" + user.getName() + "§8#" + user.getDiscriminator() + " §7» §f" + message);
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&9[DISCORD] &a" + role + "&e" + user.getName() + "&8#" + user.getDiscriminator() + " &7» &f" + message));
         }
     }
 }
