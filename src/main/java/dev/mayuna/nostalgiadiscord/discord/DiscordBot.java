@@ -16,6 +16,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.utils.MarkdownSanitizer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -23,7 +24,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -107,7 +107,10 @@ public class DiscordBot {
         }
 
         String playerName = event.getPlayer().getName();
-        String message = event.getMessage();
+        String message = MarkdownSanitizer.escape(event.getMessage())
+                                          .replace("@", "\\@") // Makes <@680508886574170122> pings non working
+                                          .replace("@everyone", "<at>everyone") // @everyone -> <at>everyone
+                                          .replace("@here", "<at>here"); // @here -> <at>here
 
         textChannel.sendMessage("<**" + playerName + "**> " + message).queue(success -> {
             // Empty
