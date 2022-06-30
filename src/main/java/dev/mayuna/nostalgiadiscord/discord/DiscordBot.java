@@ -112,7 +112,7 @@ public class DiscordBot {
                                           .replace("@everyone", "<at>everyone") // @everyone -> <at>everyone
                                           .replace("@here", "<at>here"); // @here -> <at>here
 
-        textChannel.sendMessage("<**" + playerName + "**> " + message).queue(success -> {
+        textChannel.sendMessage("<**" + MarkdownSanitizer.escape(playerName) + "**> " + message).queue(success -> {
             // Empty
         }, failure -> {
             failure.printStackTrace();
@@ -127,7 +127,7 @@ public class DiscordBot {
 
         String playerName = event.getPlayer().getName();
 
-        textChannel.sendMessageEmbeds(MessageInfo.successEmbed("**" + playerName + "** joined the game!")
+        textChannel.sendMessageEmbeds(MessageInfo.successEmbed("**" + MarkdownSanitizer.escape(playerName) + "** joined the game!")
                                                  .setTitle("Player joined")
                                                  .setFooter(null)
                                                  .build()).queue(success -> {
@@ -145,7 +145,7 @@ public class DiscordBot {
 
         String playerName = event.getPlayer().getName();
 
-        textChannel.sendMessageEmbeds(MessageInfo.errorEmbed("**" + playerName + "** left the game.")
+        textChannel.sendMessageEmbeds(MessageInfo.errorEmbed("**" + MarkdownSanitizer.escape(playerName) + "** left the game.")
                                                  .setTitle("Player left")
                                                  .setFooter(null)
                                                  .build())
@@ -165,7 +165,7 @@ public class DiscordBot {
         String playerName = event.getEntity().getName();
         String deathMessage = event.getDeathMessage();
 
-        textChannel.sendMessageEmbeds(MessageInfo.informationEmbed(deathMessage)
+        textChannel.sendMessageEmbeds(MessageInfo.informationEmbed(MarkdownSanitizer.escape(deathMessage)) // Prevents custom item names with pings, just in case since embeds cannot ping
                                                  .setTitle("Death")
                                                  .setColor(null)
                                                  .setFooter(null)
